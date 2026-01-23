@@ -8,6 +8,8 @@ RUN apt-get update && apt-get install -y libicu74 && rm -rf /var/lib/apt/lists/*
 
 RUN useradd -m -s /bin/bash server
 
+RUN mkdir -p "/home/server/.config/SCP Secret Laboratory" && chown -R server:server /home/server/.config
+
 ENV HOME=/home/server
 
 USER server

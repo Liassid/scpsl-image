@@ -6,7 +6,7 @@ USER root
 
 RUN apt-get update && apt-get install -y libicu74 && rm -rf /var/lib/apt/lists/*
 
-RUN useradd -m -s /bin/bash server
+RUN groupadd -g 1000 server && useradd -u 1000 -g 1000 -m -s /bin/bash server
 
 RUN mkdir -p "/home/server/.config/SCP Secret Laboratory" && chown -R server:server /home/server/.config
 

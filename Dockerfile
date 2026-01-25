@@ -6,20 +6,18 @@ USER root
 
 RUN apt-get update && apt-get install -y libicu74 && rm -rf /var/lib/apt/lists/*
 
-RUN groupadd -g 1000 server && useradd -u 1000 -g 1000 -m -s /bin/bash server
+RUN mkdir -p "/home/ubuntu/.config/SCP Secret Laboratory" && chown -R ubuntu:ubuntu /home/ubuntu/.config
 
-RUN mkdir -p "/home/server/.config/SCP Secret Laboratory" && chown -R server:server /home/server/.config
+ENV HOME=/home/ubuntu
 
-ENV HOME=/home/server
+USER ubuntu
 
-USER server
+WORKDIR /home/ubuntu
 
-WORKDIR /home/server
-
-RUN steamcmd +force_install_dir /home/server/scpsl +login anonymous "+app_update 996560 -beta ${BRANCH}" validate +quit
+RUN steamcmd +force_install_dir /home/ubuntu/scpsl +login anonymous "+app_update 996560 -beta ${BRANCH}" validate +quit
 
 EXPOSE 7777/udp
 
-WORKDIR /home/server/scpsl
+WORKDIR /home/ubuntu/scpsl
 
 ENTRYPOINT ["./LocalAdmin", "7777", "--acceptEULA", "--useDefault", "--noTerminalTitle"]

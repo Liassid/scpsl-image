@@ -15,6 +15,8 @@ USER ubuntu
 
 WORKDIR /home/ubuntu
 
+RUN steamcmd +login anonymous +quit
+
 RUN steamcmd +force_install_dir /home/ubuntu/scpsl +login anonymous "+app_update 996560 -beta ${BRANCH}" validate +quit
 
 EXPOSE ${PORT}/udp

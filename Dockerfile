@@ -4,7 +4,7 @@ ARG BRANCH=public
 
 USER root
 
-RUN apt-get update && apt-get install -y libicu74 tzdata && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y libicu78 tzdata && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p "/home/ubuntu/.config/SCP Secret Laboratory" && chown -R ubuntu:ubuntu /home/ubuntu/.config
 
